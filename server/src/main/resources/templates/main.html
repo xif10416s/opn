@@ -1,0 +1,135 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>User Interface Ui Kit Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <link th:href="@{~/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script th:src="@{~/js/jquery-1.11.0.min.js}"></script>
+    <!-- Custom Theme files -->
+    <link th:href="@{~/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
+    <!-- Custom Theme files -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+    </script>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!--Calender-->
+    <link rel="stylesheet" th:href="@{~/css/clndr.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{~/css/opn.css}" type="text/css"/>
+    <script th:src="@{~/js/underscore-min.js}"></script>
+    <script th:src="@{~/js/moment-2.2.1.js}"></script>
+    <script th:src="@{~/js/clndr.js}"></script>
+    <script th:src="@{~/js/site.js}"></script>
+    <!--End Calender-->
+</head>
+<body>
+<!--container-->
+<div class="container">
+    <!--main-content-->
+    <div class="main-content"  id="tabs" >
+        <!--top-header-->
+        <div class="top-header">
+            <!--top-nav-->
+            <div class="col-md-8 top-nav" style="margin-bottom: 5px;">
+                <!--<span class="menu"> <img th:src="@{~/images/icon.png}" alt=""></span>-->
+                <nav>
+                    <ul class="nav_font">
+                        <li><a href="#section-1"><i class="glyphicon glyphicon-th-large"></i>
+                            <span> 主题</span></a></li>
+                        <li><a href="#section-2"><i class="glyphicon glyphicon-align-justify"></i>
+                            <span class=".nav_font"> 首页</span></a></li>
+                        <li><a href="#section-3"><i class="glyphicon glyphicon-user"></i> <span class=".nav_font"> 个人</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="clearfix"></div>
+            <!--top-nav-->
+        </div>
+        <!--top-header-->
+        <!--inner-content-->
+        <div class="inner-content" style="margin-top: 8px;">
+            <!--/accordions-->
+            <div class="mid-tabs-top" style="margin-top: 8px;">
+                <!--skill-one-->
+                <div class="col-md-6 mid-tabs">
+                    <div>
+                        <div class="content">
+                            <section id="section-1">
+                                <div class="tab-inner">
+                                    <div class="tab-grids">
+                                        <div class="tab-img">
+                                            <img class="img-responsive" th:src="@{~/images/pic.jpg}" alt="">
+                                            <h4>Image 01</h4>
+                                        </div>
+                                        <div class="tab-img">
+                                            <img class="img-responsive" th:src="@{~/images/pic1.jpg}" alt="">
+                                            <h4>Image 01</h4>
+                                        </div>
+                                        <div class="tab-img">
+                                            <img class="img-responsive" th:src="@{~/images/pic2.jpg}" alt="">
+                                            <h4>Image 01</h4>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </section>
+                            <section id="section-2">
+                                <div class="tab-inner">
+                                    <!--<iframe src="https://player.vimeo.com/video/25025844"></iframe>-->
+                                </div>
+                            </section>
+                            <section id="section-3">
+                                <div class="tab-inner">
+                                    <img class="img-responsive" th:src="@{~/images/post.jpg}" alt="">
+                                </div>
+                            </section>
+                        </div><!-- /content -->
+                    </div><!-- /tabs -->
+                    <link rel="stylesheet" type="text/css" th:href="@{~/css/component.css}"/>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{~/js/cbpFWTabs.js}"></script>
+        <script>
+            new CBPFWTabs(document.getElementById('tabs'));
+        </script>
+        <div class="clearfix"></div>
+        <div class="col-md-2 buttons" style="position:fixed; bottom:0;">
+            <div class="sub-buttons">
+                <a href="#" class="hvr-sweep-to-right button">上一条</a>
+                <a href="#" class="hvr-sweep-to-right button">查看详细</a>
+                <a href="#" class="hvr-sweep-to-right button">下一条</a>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <!--//call-inner-->
+    </div>
+    </div>
+</div>
+<!--//container-->
+</body>
+</html>
+
