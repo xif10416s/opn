@@ -1,3 +1,43 @@
 .nav_font {
-    font-size: 30px;
+     font-size: 30px;
+     /*font-size: 1.1em;*/
+     font-weight: 600;
+     color: #626E79;
+     text-decoration: none;
+     padding: 1.4em 0em 1.4em 0em;
+     display: block;
+     border-top: 4px solid #fff;
+     background: #fff;
+     font-family: 'Lato', sans-serif;
+     text-transform: uppercase;
+ }
+
+.foot_font {
+    font-size: 15px;
+    /*font-size: 1.1em;*/
+    font-weight: 600;
+    color: #626E79;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+}
+
+.main_title {
+    font-size: 25px;
+    /*font-size: 1.1em;*/
+    font-weight: bold;
+    color: #0c0509;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+}
+
+.main_context {
+    font-size: 23px;
+    /*font-size: 1.1em;*/
+    font-weight: 600;
+    color: #152b47;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
 }

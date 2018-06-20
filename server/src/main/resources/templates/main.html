@@ -10,6 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link th:href="@{~/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script th:src="@{~/js/jquery-1.11.0.min.js}"></script>
+    <script th:src="@{~/js/bootstrap.min.js}"></script>
     <!-- Custom Theme files -->
     <link th:href="@{~/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
@@ -46,19 +47,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--container-->
 <div class="container">
     <!--main-content-->
-    <div class="main-content"  id="tabs" >
+    <div class="main-content" id="tabs">
         <!--top-header-->
-        <div class="top-header">
+        <div class="top-header" style="position:fixed;width: 95%;top:0;z-index: 9999">
             <!--top-nav-->
             <div class="col-md-8 top-nav" style="margin-bottom: 5px;">
-                <!--<span class="menu"> <img th:src="@{~/images/icon.png}" alt=""></span>-->
+                <!--<span class="menu"> <img th:src="@{~/images/icon.png}"  th:width="90%"></span>-->
                 <nav>
                     <ul class="nav_font">
                         <li><a href="#section-1"><i class="glyphicon glyphicon-th-large"></i>
                             <span> 主题</span></a></li>
                         <li><a href="#section-2"><i class="glyphicon glyphicon-align-justify"></i>
                             <span class=".nav_font"> 首页</span></a></li>
-                        <li><a href="#section-3"><i class="glyphicon glyphicon-user"></i> <span class=".nav_font"> 个人</span></a>
+                        <li><a href="#section-3"><i class="glyphicon glyphicon-user"></i> <span
+                                class=".nav_font"> 个人</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -68,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <!--top-header-->
         <!--inner-content-->
-        <div class="inner-content" style="margin-top: 8px;">
+        <div class="inner-content" style="margin-top: 70px;margin-bottom: 90px;">
             <!--/accordions-->
             <div class="mid-tabs-top" style="margin-top: 8px;">
                 <!--skill-one-->
@@ -77,23 +79,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="content">
                             <section id="section-1">
                                 <div class="tab-inner">
-                                    <div class="tab-grids">
-                                        <div class="tab-img">
-                                            <img class="img-responsive" th:src="@{~/images/pic.jpg}" alt="">
-                                            <h4>Image 01</h4>
-                                        </div>
-                                        <div class="tab-img">
-                                            <img class="img-responsive" th:src="@{~/images/pic1.jpg}" alt="">
-                                            <h4>Image 01</h4>
-                                        </div>
-                                        <div class="tab-img">
-                                            <img class="img-responsive" th:src="@{~/images/pic2.jpg}" alt="">
-                                            <h4>Image 01</h4>
-
-                                        </div>
-                                        <div class="clearfix"></div>
+                                    <div class="main_title" id="main_title"></div>
+                                    <div>
+                                        <span id="main_date"></span>
+                                        <span id="main_author"></span>
                                     </div>
-                                    <div class="clearfix"></div>
+                                    <div class="main_context" id="main_content"></div>
                                 </div>
                             </section>
                             <section id="section-2">
@@ -103,7 +94,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </section>
                             <section id="section-3">
                                 <div class="tab-inner">
-                                    <img class="img-responsive" th:src="@{~/images/post.jpg}" alt="">
+                                    <img class="img-responsive" th:src="@{~/images/post.jpg}">
                                 </div>
                             </section>
                         </div><!-- /content -->
@@ -117,18 +108,173 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             new CBPFWTabs(document.getElementById('tabs'));
         </script>
         <div class="clearfix"></div>
-        <div class="col-md-2 buttons" style="position:fixed; bottom:0;">
-            <div class="sub-buttons">
-                <a href="#" class="hvr-sweep-to-right button">上一条</a>
-                <a href="#" class="hvr-sweep-to-right button">查看详细</a>
-                <a href="#" class="hvr-sweep-to-right button">下一条</a>
-            </div>
-        </div>
-        <div class="clearfix"> </div>
         <!--//call-inner-->
     </div>
+    <div class="row" style="position:fixed; bottom:0;width: 98%" >
+        <div class="col-md-6 foot_font" >
+            <a href="#" id="pre_content" class="hvr-bounce-to-right button btn-lg"  style="float: left;width: 35%;text-align: center">上一条</a>
+            <a href="#" id="next_content" class="hvr-bounce-to-right button btn-lg" style="float: right;width: 35%;text-align: center">下一条</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <audio src="" id="myaudio" controls="controls" hidden="hidden">
+        该浏览器不支持audio属性
+    </audio>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+         style="padding-top: 40%">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        是否需要自动语音播放？请点击相应按钮选择。
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭（不需要）
+                    </button>
+                    <button type="button" class="btn btn-primary" id="onPlayBtn">
+                        需要语音播放
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
     </div>
 </div>
+</div>
+<script th:src="@{~/js/fingerprint2.min.js}"></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script th:inline="javascript">
+    var baseSoundURL = "http://pajw3brke.bkt.clouddn.com/"
+    var index = 0
+    var batchSize = 10
+    var isAutoPlay = false
+    var fpId = ""
+    var ip = returnCitySN["cip"]
+    var city = returnCitySN["cname"]
+    /*[+
+
+//     var mainContentList  = [[${mainContentList}]];
+
+     +]*/
+    var mainContentList =[]
+
+    function showContent(idx) {
+        var mainContent = mainContentList[idx]
+        $("#main_title").text(mainContent['title'])
+        $("#main_date").text(mainContent['date'])
+        $("#main_author").text(mainContent['author'])
+        $("#main_content").html(mainContent['content'])
+    }
+
+    function startPlay(idx) {
+        if (isAutoPlay) {
+            var mainContent = mainContentList[idx]
+            var arr = mainContent['ttsUrls'].split(",").reverse()
+            var myAudio = document.getElementById("myaudio")
+            // clean before
+            myAudio.pause()
+            myAudio.currentTime = 0
+            myAudio.removeEventListener('ended', playEndedHandler, false)
+
+            myAudio.src = baseSoundURL + arr.pop();//每次读数组最后一个元素
+            myAudio.addEventListener('ended', playEndedHandler(arr), false);
+//            myAudio.load();
+            myAudio.play();
+            function playEndedHandler(arr) {
+//                console.log(arr)
+                myAudio.src = baseSoundURL + arr.pop();
+                myAudio.play();
+                console.log("=="+myAudio.src);
+                !arr.length && myAudio.removeEventListener('ended', playEndedHandler, false);//只有一个元素时解除绑定
+            }
+        }
+    }
+
+
+    function stopPlay() {
+        var myAuto = document.getElementById("myaudio")
+        myAuto.pause();
+    }
+
+    function getContentList(isInit){
+        var search = {}
+        search["fpId"] = fpId;
+        search["ip"] = ip;
+        search["city"] = city;
+        search["init"] = isInit;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "/main/getContentList",
+            data: JSON.stringify(search),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                mainContentList = data.result
+                index = 0
+                showContent(index)
+                if(!isInit){
+                    startPlay(index)
+                }
+
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("#onPlayBtn").click(function () {
+            $("#myModal").modal('hide');
+            isAutoPlay = true
+            startPlay(index)
+        })
+        if (index == 0) {
+            $("#myModal").modal('show');
+        }
+//        showContent(index)
+//        getContentList()
+    })
+
+
+    $("#next_content").click(function () {
+        if( index == mainContentList.length - 1){
+            getContentList(false)
+        } else if (index < mainContentList.length - 1) {
+            index = index + 1
+            showContent(index)
+            startPlay(index)
+        }
+    });
+
+    $("#pre_content").click(function () {
+        if (index > 0) {
+            index = index - 1
+            showContent(index)
+            startPlay(index)
+        }
+    });
+
+</script>
+<script>
+    function getUId() {
+        new Fingerprint2().get(function (result, components) {
+            console.log(result) // a hash, representing your device fingerprint
+//            console.log(components) // an array of FP components
+            fpId = result
+            getContentList(true)
+        })
+    }
+    getUId()
+</script>
+
 <!--//container-->
 </body>
 </html>

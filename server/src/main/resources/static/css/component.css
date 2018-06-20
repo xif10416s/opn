@@ -120,6 +120,8 @@ background-color:none;
 
 .content section.content-current {
 	display: block;
+	padding-right: 6px;
+	padding-left: 6px;
 }
 
 .mediabox {
