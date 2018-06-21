@@ -30,10 +30,12 @@ CREATE TABLE `opn`.`post` (
  ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `opn`.`dispatch_log` (
+CREATE TABLE `opn`.`read_log` (
   `id`  INT NOT NULL AUTO_INCREMENT,
 	`fpid` varchar(32) NOT NULL,
 	`post_id`  INT NOT NULL,
+	`duration`  INT NOT NULL,
+	`start_time` TIMESTAMP NOT NULL,
 	`create_time` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
 	 PRIMARY KEY (`id`),
     KEY `fpid` (`fpid`)

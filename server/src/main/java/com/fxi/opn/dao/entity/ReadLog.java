@@ -8,8 +8,8 @@ import javax.persistence.*;
  * Created by seki on 18/6/20.
  */
 @Entity
-@Table(name = "user_login")
-public class DispatchLog {
+@Table(name = "read_log")
+public class ReadLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +19,12 @@ public class DispatchLog {
 
     @Column
     private Long postId;
+
+    @Column
+    private Integer duration;
+
+    @Column
+    private Timestamp startTime;
 
     @Column
     private Timestamp createTime;
@@ -53,5 +59,21 @@ public class DispatchLog {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Timestamp getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
     }
 }

@@ -9,6 +9,8 @@ public class MainContent {
     private String author;
     private String content;
     private String ttsUrls;
+    private String orginUrl;
+    private Long postId;
 
     public String getTitle() {
         return title;
@@ -48,5 +50,21 @@ public class MainContent {
 
     public String getTtsUrls() {
         return ttsUrls;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setOrginUrl(String orginUrl) {
+        this.orginUrl = orginUrl;
+    }
+
+    public String getOrginUrl() {
+        return orginUrl;
     }
 }

@@ -8,7 +8,9 @@ import com.fxi.opn.dao.entity.UserTopic;
 import com.fxi.opn.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +25,7 @@ public class UserLoginServiceImpl implements UserLoginService {
     private UserTopicRepository userTopicRepository;
 
     @Override
-    public void save(String fpid, String ip, String city) {
+    public void saveUserLogin(String fpid, String ip, String city) {
         UserLogin userLogin = new UserLogin();
         userLogin.setFpid(fpid);
         userLogin.setCity(city);
@@ -36,5 +38,22 @@ public class UserLoginServiceImpl implements UserLoginService {
         return userTopicRepository.findByFpid(fpid);
     }
 
+    @Override
+    public void deleteUserTopicByFpid(String fpid) {
+        userTopicRepository.deleteByFpid(fpid);
+    }
 
+    @Override
+    @Transactional(readOnly = false)
+    public void updateUserTopics(String fpid, List<Integer> topics) {
+        if(topics == null || topics.size() ==0){
+            return;
+        }
+        userTopicRepository.deleteByFpid(fpid);
+        ArrayList<UserTopic> userTopics = new ArrayList<>();
+        for(Integer topic :topics){
+            userTopics.add(new UserTopic(fpid,topic));
+        }
+        userTopicRepository.saveAll(userTopics);
+    }
 }

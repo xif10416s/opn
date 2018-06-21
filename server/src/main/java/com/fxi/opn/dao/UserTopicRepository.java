@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface UserTopicRepository extends JpaRepository<UserTopic, Long> {
     List<UserTopic> findByFpid(String fpid);
+
+    void deleteByFpid(String fpid);
 }

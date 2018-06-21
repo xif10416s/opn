@@ -4,13 +4,13 @@ package com.fxi.opn.controller;
  * Created by seki on 18/6/12.
  */
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.fxi.opn.model.ReadLog;
 import com.fxi.opn.dao.entity.UserTopic;
 import com.fxi.opn.service.UserLoginService;
 import org.slf4j.Logger;
@@ -59,7 +59,7 @@ public class MainController {
         logger.debug("search.isInit() "+search.isInit());
         AjaxResponseBody result = new AjaxResponseBody<MainContent>();
         if(search.isInit()){
-            userLoginService.save(search.getFpId(),search.getIp(),search.getCity());
+            userLoginService.saveUserLogin(search.getFpId(),search.getIp(),search.getCity());
             List<UserTopic> userTopics = userLoginService.getUserTopics(search.getFpId());
             if(userTopics != null && userTopics.size() > 0){
                 List<Integer> topicIds = userTopics.stream().map(topic -> {
@@ -95,6 +95,42 @@ public class MainController {
 
         return ResponseEntity.ok(result);
 
+    }
+
+    @PostMapping("/main/updateTopic")
+    public ResponseEntity<?> updateTopic(
+            @RequestBody @Valid SearchCriteria search, Errors errors) {
+        AjaxResponseBody result = new AjaxResponseBody<String>();
+        //If error, just return a 400 bad request, along with the error message
+        if (errors.hasErrors()) {
+
+            result.setMsg(errors.getAllErrors()
+                    .stream().map(x -> x.getDefaultMessage())
+                    .collect(Collectors.joining(",")));
+
+            return ResponseEntity.badRequest().body(result);
+
+        }
+        userLoginService.updateUserTopics(search.getFpId(),search.getTopics());
+        result.setMsg("0");
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/main/saveReadLog")
+    public ResponseEntity<?> saveReadLog(
+            @RequestBody @Valid ReadLog readLog, Errors errors) {
+        AjaxResponseBody result = new AjaxResponseBody<String>();
+        //If error, just return a 400 bad request, along with the error message
+        if (errors.hasErrors()) {
+            result.setMsg(errors.getAllErrors()
+                    .stream().map(x -> x.getDefaultMessage())
+                    .collect(Collectors.joining(",")));
+
+            return ResponseEntity.badRequest().body(result);
+
+        }
+        postService.saveReadLog(readLog.getFpId(),readLog.getPostId(),readLog.getDuration(),readLog.getStartTime());
+        return ResponseEntity.ok(result);
     }
 
 }

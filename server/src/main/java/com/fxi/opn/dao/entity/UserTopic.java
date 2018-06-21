@@ -22,6 +22,15 @@ public class UserTopic {
     @Column
     private Timestamp createTime;
 
+    public UserTopic(){
+
+    }
+
+    public UserTopic(String fpid,Integer topicId){
+        this.fpid = fpid;
+        this.topicId = topicId;
+    }
+
     public Long getId() {
         return id;
     }

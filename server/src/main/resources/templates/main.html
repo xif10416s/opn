@@ -55,12 +55,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <!--<span class="menu"> <img th:src="@{~/images/icon.png}"  th:width="90%"></span>-->
                 <nav>
                     <ul class="nav_font">
-                        <li><a href="#section-1"><i class="glyphicon glyphicon-th-large"></i>
+                        <li><a id="topic_section" href="#section-1"><i class="glyphicon glyphicon-th-large"></i>
                             <span> 主题</span></a></li>
-                        <li><a href="#section-2"><i class="glyphicon glyphicon-align-justify"></i>
-                            <span class=".nav_font"> 首页</span></a></li>
+                        <li><a id="main_section" href="#section-2"><i class="glyphicon glyphicon-align-justify"></i>
+                            <span class="nav_font"> 首页</span></a></li>
                         <li><a href="#section-3"><i class="glyphicon glyphicon-user"></i> <span
-                                class=".nav_font"> 个人</span></a>
+                                class="nav_font"> 个人</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -79,13 +79,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="content">
                             <section id="section-1">
                                 <div class="tab-inner">
-                                    <p>empty</p>
-                                    <p>empty</p>
-                                    <p>empty</p>
-                                    <p>empty</p>
-                                    <p>empty</p>
-                                    <p>empty</p>
-                                    <p>empty</p>
+                                    <table id="topics">
+                                        <tr class="nav_font">
+                                            <td><div class="form-check">
+                                                <input type="checkbox" class="filled-in form-check-input" id="topic0" value="0" style="zoom:200%;">
+                                                <label class="form-check-label" for="topic0">军事</label>
+                                            </div></td>
+                                            <td><div class="form-check">
+                                                <input type="checkbox" class="filled-in form-check-input" id="topic1" value="1" style="zoom:200%;">
+                                                <label class="form-check-label" for="topic1">健康</label>
+                                            </div></td>
+                                        </tr>
+                                    </table>
+                                    <div class="row" style="position:fixed; bottom:0;width: 98%" >
+                                        <div class="col-md-6 foot_font" >
+                                            <a href="#" id="updateTopic" class="hvr-bounce-to-right button btn-lg"  style=";width: 35%;text-align: center">确认并更新</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
                             <section id="section-2">
@@ -117,7 +127,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <script th:src="@{~/js/cbpFWTabs.js}"></script>
         <script>
-            new CBPFWTabs(document.getElementById('tabs'));
+            var $t = new CBPFWTabs(document.getElementById('tabs'));
         </script>
         <div class="clearfix"></div>
         <!--//call-inner-->
@@ -163,6 +173,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     var fpId = ""
     var ip = returnCitySN["cip"]
     var city = returnCitySN["cname"]
+    var startTime = (new Date()).valueOf();
+
     /*[+
 
 //     var mainContentList  = [[${mainContentList}]];
@@ -170,12 +182,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      +]*/
     var mainContentList =[]
 
+    // content play
     function showContent(idx) {
         var mainContent = mainContentList[idx]
         $("#main_title").text(mainContent['title'])
         $("#main_date").text(mainContent['date'])
         $("#main_author").text(mainContent['author'])
         $("#main_content").html(mainContent['content'])
+        startTime = (new Date()).valueOf();
     }
 
     function startPlay(idx) {
@@ -208,12 +222,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         myAuto.pause();
     }
 
+    // request handlers
     function getContentList(isInit){
         var search = {}
         search["fpId"] = fpId;
         search["ip"] = ip;
         search["city"] = city;
         search["init"] = isInit;
+        var selected = [];
+        $('#topics input:checked').each(function() {
+            selected.push($(this).val());
+        });
+        search["topics"]=selected
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
@@ -228,13 +248,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 if(isInit){
                     if(data.topics != null && data.topics.length >0){
                         // update topics
-
+                        for(j = 0,len=data.topics.length; j < len; j++) {
+                            $("#topic"+data.topics[j]).prop('checked', true)
+                        }
                         // show
                         showContent(index)
-
+                        $t._show(1)
+                        $("#myModal").modal('show');
                     } else {
-                        showContent(index)
-                        show(1)
+                        $t._show(0)
                     }
                 } else {
                     showContent(index)
@@ -248,37 +270,101 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         });
     }
 
+
+    function updateTopic(){
+        var search = {}
+        search["fpId"] = fpId;
+        var selected = [];
+        $('#topics input:checked').each(function() {
+            selected.push($(this).val());
+        });
+        if(selected.lenth == 0){
+            return;
+        }
+        search["topics"]=selected
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "/main/updateTopic",
+            data: JSON.stringify(search),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                getContentList(true)
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+            }
+        });
+    }
+
+    function saveReadLog(){
+        var search = {}
+        search["fpId"] = fpId;
+        currentPostId = mainContentList[index]['postId']
+        search["postId"]=currentPostId
+        search["startTime"]= startTime
+        search["duration"]= (new Date()).valueOf()- startTime
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "/main/saveReadLog",
+            data: JSON.stringify(search),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+            }
+        });
+    }
+
+ // btn bind click
     $(document).ready(function () {
         $("#onPlayBtn").click(function () {
             $("#myModal").modal('hide');
             isAutoPlay = true
             startPlay(index)
         })
-        if (index == 0) {
-            $("#myModal").modal('show');
-        }
-//        showContent(index)
-//        getContentList()
+
+        $("#main_section").click(function() {
+            showContent(index)
+            if(!isAutoPlay){
+                $("#myModal").modal('show');
+            }
+        })
+
+        $("#next_content").click(function () {
+            if(mainContentList.length == 0){
+                return
+            }
+            saveReadLog()
+            if( index == mainContentList.length - 1){
+                getContentList(false)
+            } else if (index < mainContentList.length - 1) {
+                index = index + 1
+                showContent(index)
+                startPlay(index)
+            }
+        });
+
+        $("#pre_content").click(function () {
+            if (index > 0) {
+                index = index - 1
+                showContent(index)
+                startPlay(index)
+            }
+        });
+
+        $("#updateTopic").click(function () {
+            updateTopic()
+        });
     })
 
-
-    $("#next_content").click(function () {
-        if( index == mainContentList.length - 1){
-            getContentList(false)
-        } else if (index < mainContentList.length - 1) {
-            index = index + 1
-            showContent(index)
-            startPlay(index)
-        }
-    });
-
-    $("#pre_content").click(function () {
-        if (index > 0) {
-            index = index - 1
-            showContent(index)
-            startPlay(index)
-        }
-    });
 
 </script>
 <script>
