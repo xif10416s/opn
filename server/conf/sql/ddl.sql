@@ -28,3 +28,25 @@ CREATE TABLE `opn`.`post` (
     KEY `date` (`date`)
  )
  ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `opn`.`dispatch_log` (
+  `id`  INT NOT NULL AUTO_INCREMENT,
+	`fpid` varchar(32) NOT NULL,
+	`post_id`  INT NOT NULL,
+	`create_time` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+	 PRIMARY KEY (`id`),
+    KEY `fpid` (`fpid`)
+ )
+ ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `opn`.`user_topic` (
+  `id`  INT NOT NULL AUTO_INCREMENT,
+	`fpid` varchar(32) NOT NULL,
+	`topic_id`  INT NOT NULL,
+	`create_time` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+	 PRIMARY KEY (`id`),
+    KEY `fpid` (`fpid`)
+ )
+ ENGINE=InnoDB DEFAULT CHARSET=utf8;

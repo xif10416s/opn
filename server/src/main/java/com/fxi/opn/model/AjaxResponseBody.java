@@ -8,6 +8,7 @@ import java.util.List;
 public class AjaxResponseBody<E> {
     String msg;
     List<E> result;
+    public List<Integer> topics;
 
     public void setMsg(String msg) {
         this.msg = msg;
@@ -23,5 +24,13 @@ public class AjaxResponseBody<E> {
 
     public List<E> getResult() {
         return result;
+    }
+
+    public void setTopics(List<Integer> topics) {
+        this.topics = topics;
+    }
+
+    public List<Integer> getTopics() {
+        return topics;
     }
 }

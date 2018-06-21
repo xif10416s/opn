@@ -8,5 +8,5 @@ import java.util.List;
  * Created by seki on 18/6/19.
  */
 public interface PostService {
-    List<MainContent> getPostList();
+    List<MainContent> getPostList(String fpId,List<Integer> topics);
 }

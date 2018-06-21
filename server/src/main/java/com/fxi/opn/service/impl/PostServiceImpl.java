@@ -19,8 +19,8 @@ public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
 
     @Override
-    public List<MainContent> getPostList() {
-        List<Post> top10ByOrderByDate = postRepository.findTop10ByOrderByDate();
+    public List<MainContent> getPostList(String fpid ,List<Integer> topics) {
+        List<Post> top10ByOrderByDate = postRepository.findTop200ByTopicIdInOrderByDateDesc(topics);
         List<MainContent> rsList = new ArrayList<MainContent>();
         for(Post p : top10ByOrderByDate){
             MainContent mainContent = new MainContent();

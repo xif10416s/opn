@@ -4,11 +4,14 @@ package com.fxi.opn.controller;
  * Created by seki on 18/6/12.
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.fxi.opn.dao.entity.UserTopic;
 import com.fxi.opn.service.UserLoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +44,8 @@ public class MainController {
     @Autowired
     private UserLoginService userLoginService;
 
+    List<Integer> DEFAULT_TOPIC = Arrays.asList(0,1);
+
     @RequestMapping("/")
     public String main() {
         logger.info("-----");
@@ -52,11 +57,18 @@ public class MainController {
     public ResponseEntity<?> getContentListViaAjax(
             @RequestBody @Valid SearchCriteria search, Errors errors) {
         logger.debug("search.isInit() "+search.isInit());
+        AjaxResponseBody result = new AjaxResponseBody<MainContent>();
         if(search.isInit()){
             userLoginService.save(search.getFpId(),search.getIp(),search.getCity());
+            List<UserTopic> userTopics = userLoginService.getUserTopics(search.getFpId());
+            if(userTopics != null && userTopics.size() > 0){
+                List<Integer> topicIds = userTopics.stream().map(topic -> {
+                    return topic.getTopicId();
+                }).collect(Collectors.toList());
+                result.setTopics(topicIds);
+            }
         }
 
-        AjaxResponseBody result = new AjaxResponseBody<MainContent>();
         logger.debug("-----"+search.getFpId() +"  "+search.getIp() + " " + search.getCity());
         //If error, just return a 400 bad request, along with the error message
         if (errors.hasErrors()) {
@@ -69,7 +81,11 @@ public class MainController {
 
         }
 
-        List<MainContent> contentList = postService.getPostList();
+        List<Integer> topics = search.isInit() ? result.getTopics() : search.getTopics();
+        if(topics == null  || topics.size() == 0){
+            topics = DEFAULT_TOPIC;
+        }
+        List<MainContent> contentList = postService.getPostList(search.getFpId(),topics);
         if (contentList.isEmpty()) {
             result.setMsg("no user found!");
         } else {

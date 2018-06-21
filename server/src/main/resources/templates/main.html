@@ -79,6 +79,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="content">
                             <section id="section-1">
                                 <div class="tab-inner">
+                                    <p>empty</p>
+                                    <p>empty</p>
+                                    <p>empty</p>
+                                    <p>empty</p>
+                                    <p>empty</p>
+                                    <p>empty</p>
+                                    <p>empty</p>
+                                </div>
+                            </section>
+                            <section id="section-2">
+                                <div class="tab-inner">
                                     <div class="main_title" id="main_title"></div>
                                     <div>
                                         <span id="main_date"></span>
@@ -86,10 +97,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                     <div class="main_context" id="main_content"></div>
                                 </div>
-                            </section>
-                            <section id="section-2">
-                                <div class="tab-inner">
-                                    <!--<iframe src="https://player.vimeo.com/video/25025844"></iframe>-->
+                                <div class="row" style="position:fixed; bottom:0;width: 98%" >
+                                    <div class="col-md-6 foot_font" >
+                                        <a href="#" id="pre_content" class="hvr-bounce-to-right button btn-lg"  style="float: left;width: 35%;text-align: center">上一条</a>
+                                        <a href="#" id="next_content" class="hvr-bounce-to-right button btn-lg" style="float: right;width: 35%;text-align: center">下一条</a>
+                                    </div>
                                 </div>
                             </section>
                             <section id="section-3">
@@ -110,12 +122,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="clearfix"></div>
         <!--//call-inner-->
     </div>
-    <div class="row" style="position:fixed; bottom:0;width: 98%" >
-        <div class="col-md-6 foot_font" >
-            <a href="#" id="pre_content" class="hvr-bounce-to-right button btn-lg"  style="float: left;width: 35%;text-align: center">上一条</a>
-            <a href="#" id="next_content" class="hvr-bounce-to-right button btn-lg" style="float: right;width: 35%;text-align: center">下一条</a>
-        </div>
-    </div>
+
     <div class="clearfix"></div>
     <audio src="" id="myaudio" controls="controls" hidden="hidden">
         该浏览器不支持audio属性
@@ -218,8 +225,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             success: function (data) {
                 mainContentList = data.result
                 index = 0
-                showContent(index)
-                if(!isInit){
+                if(isInit){
+                    if(data.topics != null && data.topics.length >0){
+                        // update topics
+
+                        // show
+                        showContent(index)
+
+                    } else {
+                        showContent(index)
+                        show(1)
+                    }
+                } else {
+                    showContent(index)
                     startPlay(index)
                 }
 

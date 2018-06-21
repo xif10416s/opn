@@ -1,5 +1,6 @@
 package com.fxi.opn.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -21,9 +22,12 @@ public class PostRepositoryTest {
 
     @Test
     public void test01(){
-        List<Post> top10ByOrderByDate = postRepository.findTop10ByOrderByDate();
+        ArrayList<Integer> integers = new ArrayList<>();
+//        integers.add(1);
+//        integers.add(0);
+        List<Post> top10ByOrderByDate = postRepository.findTop200ByTopicIdInOrderByDateDesc(integers);
         for (Post p :top10ByOrderByDate) {
-            System.out.println(p.getTitle());
+            System.out.println(p.getTopicId() +" : " +p.getTitle());
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.fxi.opn.model;
 
+import java.util.List;
+
 /**
  * Created by seki on 18/6/20.
  */
@@ -11,6 +13,8 @@ public class SearchCriteria {
     private String city;
 
     private boolean init;
+
+    public List<Integer> topics;
 
     public void setFpId(String fpId) {
         this.fpId = fpId;
@@ -42,5 +46,13 @@ public class SearchCriteria {
 
     public boolean isInit() {
         return init;
+    }
+
+    public void setTopics(List<Integer> topics) {
+        this.topics = topics;
+    }
+
+    public List<Integer> getTopics() {
+        return topics;
     }
 }
