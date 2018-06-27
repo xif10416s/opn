@@ -14,6 +14,7 @@ CREATE TABLE `opn`.`user_login` (
 CREATE TABLE `opn`.`post` (
   `id`  INT NOT NULL AUTO_INCREMENT,
 	`topic_id` INT NOT NULL,
+	`sub_topic_id` INT NOT NULL DEFAULT 0,
 	`source_id` INT NOT NULL,
 	`media_type` INT NOT NULL,
 	`title` VARCHAR(100) NULL,
@@ -24,7 +25,7 @@ CREATE TABLE `opn`.`post` (
 	`tts_urls` VARCHAR(2000)  NULL,
 	`create_time` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
 	 PRIMARY KEY (`id`),
-    KEY `topicId` (`topic_id`),
+    KEY `sub_topic_id` (`sub_topic_id`),
     KEY `date` (`date`)
  )
  ENGINE=InnoDB DEFAULT CHARSET=utf8;

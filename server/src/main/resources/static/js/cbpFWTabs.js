@@ -37,7 +37,6 @@
 		this.tabs = [].slice.call( this.el.querySelectorAll( 'nav > ul > li > a' ) );
 		// content items
 		this.items = [].slice.call( this.el.querySelectorAll( '.content > section' ) );
-		console.log("i:"+this.items)
 		// current index
 		this.current = -1;
 		// show current content item
@@ -62,7 +61,6 @@
 			this.items[ this.current ].className = '';
 		}
 		// change current
-		console.log("t:"+this.tabs)
 		this.current = idx != undefined ? idx : this.options.start >= 0 && this.options.start < this.items.length ? this.options.start : 0;
 		this.tabs[ this.current ].className = 'active';
 		this.items[ this.current ].className = 'content-current';

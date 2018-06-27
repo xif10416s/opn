@@ -17,6 +17,9 @@ public class Post {
     private Integer topicId;
 
     @Column
+    private Integer subTopicId;
+
+    @Column
     private Integer sourceId;
     @Column
     private Integer mediaType;
@@ -122,5 +125,13 @@ public class Post {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    public void setSubTopicId(Integer subTopicId) {
+        this.subTopicId = subTopicId;
+    }
+
+    public Integer getSubTopicId() {
+        return subTopicId;
     }
 }

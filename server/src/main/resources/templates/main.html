@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>User Interface Ui Kit Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <title>乐夕阳</title>
     <link th:href="@{~/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script th:src="@{~/js/jquery-1.11.0.min.js}"></script>
@@ -51,16 +51,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!--top-header-->
         <div class="top-header" style="position:fixed;width: 95%;top:0;z-index: 9999">
             <!--top-nav-->
-            <div class="col-md-8 top-nav" style="margin-bottom: 5px;">
+            <div class="top-nav" style="margin-bottom: 5px;">
                 <!--<span class="menu"> <img th:src="@{~/images/icon.png}"  th:width="90%"></span>-->
                 <nav>
                     <ul class="nav_font">
                         <li><a id="topic_section" href="#section-1"><i class="glyphicon glyphicon-th-large"></i>
                             <span> 主题</span></a></li>
                         <li><a id="main_section" href="#section-2"><i class="glyphicon glyphicon-align-justify"></i>
-                            <span class="nav_font"> 首页</span></a></li>
-                        <li><a href="#section-3"><i class="glyphicon glyphicon-user"></i> <span
-                                class="nav_font"> 个人</span></a>
+                            <span> 首页</span></a></li>
+                        <li><a href="#section-3"><i class="glyphicon glyphicon-user"></i> <span> 个人</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -70,30 +69,120 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <!--top-header-->
         <!--inner-content-->
-        <div class="inner-content" style="margin-top: 70px;margin-bottom: 90px;">
+        <div class="inner-content" >
             <!--/accordions-->
             <div class="mid-tabs-top" style="margin-top: 8px;">
                 <!--skill-one-->
-                <div class="col-md-6 mid-tabs">
+                <div class="mid-tabs">
                     <div>
                         <div class="content">
                             <section id="section-1">
-                                <div class="tab-inner">
-                                    <table id="topics">
-                                        <tr class="nav_font">
-                                            <td><div class="form-check">
-                                                <input type="checkbox" class="filled-in form-check-input" id="topic0" value="0" style="zoom:200%;">
-                                                <label class="form-check-label" for="topic0">军事</label>
-                                            </div></td>
-                                            <td><div class="form-check">
-                                                <input type="checkbox" class="filled-in form-check-input" id="topic1" value="1" style="zoom:200%;">
-                                                <label class="form-check-label" for="topic1">健康</label>
-                                            </div></td>
-                                        </tr>
-                                    </table>
-                                    <div class="row" style="position:fixed; bottom:0;width: 98%" >
-                                        <div class="col-md-6 foot_font" >
-                                            <a href="#" id="updateTopic" class="hvr-bounce-to-right button btn-lg"  style=";width: 35%;text-align: center">确认并更新</a>
+                                <div >
+                                    <span class="twitter" style="margin-top: 0;font-size: 18px;color: #0c0509;">&nbsp;&nbsp;请点击选择感兴趣的主题,然后点击屏幕下方<strong>确认并更新</strong>按钮,开始阅读.</span>
+                                </div>
+                                <div class="tab-inner" >
+                                    <div class="row" id="subTopics" >
+                                            <div style="text-align: left;padding-left: 4%;">
+                                                <div style="display:inline-block;">
+                                                    <label class="form-check-label" >热门军事 :</label>
+                                                </div>
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic1001" value="1001" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic1001">国内军事</label>
+                                                </div >
+                                            </div>
+                                            <div style="text-align: left;padding-left: 4%;">
+                                                <div style="display:inline-block;">
+                                                    <label class="form-check-label" >社会新闻 :</label>
+                                                </div>
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic201" value="201" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic201">综合万象</label>
+                                                </div >
+                                            </div>
+                                            <div style="text-align: left;padding-left: 4%;">
+                                                <div style="display:inline-block;">
+                                                    <label class="form-check-label" >健康养生 :</label>
+                                                </div>
+                                                <div  style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic101" value="101" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic101">综合健康</label>
+                                                </div>
+                                                <div  style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic102" value="102" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic102">饮食养生</label>
+                                                </div>
+                                                <div  style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic103" value="103" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic103">起居养生</label>
+                                                </div>
+                                                <div  style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic104" value="104" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic104">医药养生</label>
+                                                </div>
+                                                <div  style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic105" value="105" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic105">运动养生</label>
+                                                </div>
+                                                <div  style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic106" value="106" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic106">时节养生</label>
+                                                </div>
+                                            </div>
+                                            <div style="text-align: left;padding-left: 4%;">
+                                                <div style="display:inline-block;">
+                                                    <label class="form-check-label" >疾病防治 :</label>
+                                                </div>
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic301" value="301" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic301">综合健康</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic302" value="302" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic302">中风防治</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic303" value="303" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic303">脑梗防治</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic304" value="304" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic304">支气管炎</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic307" value="307" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic307">便秘防治</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic308" value="308" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic308">白内障</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic309" value="309" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic309">骨质疏松</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic310" value="310" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic310">冠心病</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic311" value="311" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic311">糖尿病</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic312" value="312" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic312">痛风防治</label>
+                                                </div >
+                                                <div style="display:inline-block;">
+                                                    <input type="checkbox" class="filled-in form-check-input" id="topic313" value="313" style="zoom:180%;">
+                                                    <label class="form-check-label" for="topic313">风湿关节炎</label>
+                                                </div >
+                                            </div>
+
+                                    </div>
+                                    <div class="row" style="position:fixed; bottom:2%;width: 98%" >
+                                        <div class="foot_font" >
+                                            <a href="#" id="updateTopic" class="hvr-bounce-to-right button btn-lg"  style="width: 85%;text-align: center">确认并更新</a>
                                         </div>
                                     </div>
                                 </div>
@@ -107,10 +196,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                     <div class="main_context" id="main_content"></div>
                                 </div>
-                                <div class="row" style="position:fixed; bottom:0;width: 98%" >
+                                <div class="row" style="position:fixed; bottom:2%;width: 98%" >
                                     <div class="col-md-6 foot_font" >
-                                        <a href="#" id="pre_content" class="hvr-bounce-to-right button btn-lg"  style="float: left;width: 35%;text-align: center">上一条</a>
-                                        <a href="#" id="next_content" class="hvr-bounce-to-right button btn-lg" style="float: right;width: 35%;text-align: center">下一条</a>
+                                        <a href="#" id="pre_content" class="hvr-bounce-to-right button btn-lg"  style="float: left;width: 45%;text-align: center">上一条</a>
+                                        <a href="#" id="next_content" class="hvr-bounce-to-right button btn-lg" style="float: right;width: 45%;text-align: center">下一条</a>
                                     </div>
                                 </div>
                             </section>
@@ -134,9 +223,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
 
     <div class="clearfix"></div>
-    <audio src="" id="myaudio" controls="controls" hidden="hidden">
-        该浏览器不支持audio属性
-    </audio>
+    <!--<audio src="" id="myaudio" controls="controls" hidden="hidden">-->
+        <!--该浏览器不支持audio属性-->
+    <!--</audio>-->
+    <div id="audioBox" hidden="hidden"></div>
 
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -147,14 +237,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        是否需要自动语音播放？请点击相应按钮选择。
-                    </h4>
+                    <span style="font-size: 25px;" id="myModalLabel">
+                        是否需要自动语音播放<br/>
+                        请点击相应按钮选择。
+                    </span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭（不需要）
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 18px;">关闭（不需要）
                     </button>
-                    <button type="button" class="btn btn-primary" id="onPlayBtn">
+                    <button type="button" class="btn btn-primary" id="onPlayBtn" style="font-size: 18px;">
                         需要语音播放
                     </button>
                 </div>
@@ -194,23 +285,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     function startPlay(idx) {
         if (isAutoPlay) {
+            var audioDiv = document.getElementById("audioBox");
+            if(audioDiv.hasChildNodes()){
+                audioDiv.removeChild(audioDiv.firstChild);
+            }
             var mainContent = mainContentList[idx]
             var arr = mainContent['ttsUrls'].split(",").reverse()
-            var myAudio = document.getElementById("myaudio")
+            var myAudio = new Audio();
+//            var myAudio = document.getElementById("myaudio")
             // clean before
-            myAudio.pause()
-            myAudio.currentTime = 0
-            myAudio.removeEventListener('ended', playEndedHandler, false)
+//            myAudio.pause()
+//            myAudio.currentTime = 0
+//            myAudio.removeEventListener('ended', playEndedHandler, false)
 
             myAudio.src = baseSoundURL + arr.pop();//每次读数组最后一个元素
-            myAudio.addEventListener('ended', playEndedHandler(arr), false);
+            myAudio.addEventListener('ended', playEndedHandler, false);
 //            myAudio.load();
             myAudio.play();
-            function playEndedHandler(arr) {
-//                console.log(arr)
+            document.getElementById("audioBox").appendChild(myAudio)
+            function playEndedHandler() {
                 myAudio.src = baseSoundURL + arr.pop();
+                myAudio.load();
                 myAudio.play();
-                console.log("=="+myAudio.src);
+//                console.log("=="+myAudio.src);
+//                console.log(arr)
                 !arr.length && myAudio.removeEventListener('ended', playEndedHandler, false);//只有一个元素时解除绑定
             }
         }
@@ -230,10 +328,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         search["city"] = city;
         search["init"] = isInit;
         var selected = [];
-        $('#topics input:checked').each(function() {
+        $('#subTopics input:checked').each(function() {
             selected.push($(this).val());
         });
-        search["topics"]=selected
+        search["subTopics"]=selected
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
@@ -246,10 +344,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 mainContentList = data.result
                 index = 0
                 if(isInit){
-                    if(data.topics != null && data.topics.length >0){
+                    if(data.subTopics != null && data.subTopics.length >0){
                         // update topics
-                        for(j = 0,len=data.topics.length; j < len; j++) {
-                            $("#topic"+data.topics[j]).prop('checked', true)
+                        for(j = 0,len=data.subTopics.length; j < len; j++) {
+                            $("#topic"+data.subTopics[j]).prop('checked', true)
                         }
                         // show
                         showContent(index)
@@ -275,13 +373,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         var search = {}
         search["fpId"] = fpId;
         var selected = [];
-        $('#topics input:checked').each(function() {
+        $('#subTopics input:checked').each(function() {
             selected.push($(this).val());
         });
-        if(selected.lenth == 0){
+        if(selected.length == 0){
+            $t._show(1)
             return;
         }
-        search["topics"]=selected
+        search["subTopics"]=selected
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
@@ -297,6 +396,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 console.log("ERROR : ", e);
             }
         });
+//        $t._show(1)
     }
 
     function saveReadLog(){

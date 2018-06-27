@@ -14,7 +14,7 @@ public class SearchCriteria {
 
     private boolean init;
 
-    public List<Integer> topics;
+    public List<Integer> subTopics;
 
     public void setFpId(String fpId) {
         this.fpId = fpId;
@@ -48,11 +48,11 @@ public class SearchCriteria {
         return init;
     }
 
-    public void setTopics(List<Integer> topics) {
-        this.topics = topics;
+    public void setSubTopics(List<Integer> subTopics) {
+        this.subTopics = subTopics;
     }
 
-    public List<Integer> getTopics() {
-        return topics;
+    public List<Integer> getSubTopics() {
+        return subTopics;
     }
 }

@@ -44,8 +44,6 @@ public class MainController {
     @Autowired
     private UserLoginService userLoginService;
 
-    List<Integer> DEFAULT_TOPIC = Arrays.asList(0,1);
-
     @RequestMapping("/")
     public String main() {
         logger.info("-----");
@@ -65,7 +63,8 @@ public class MainController {
                 List<Integer> topicIds = userTopics.stream().map(topic -> {
                     return topic.getTopicId();
                 }).collect(Collectors.toList());
-                result.setTopics(topicIds);
+                logger.debug("---init-topicIds:" + topicIds);
+                result.setSubTopics(topicIds);
             }
         }
 
@@ -81,10 +80,7 @@ public class MainController {
 
         }
 
-        List<Integer> topics = search.isInit() ? result.getTopics() : search.getTopics();
-        if(topics == null  || topics.size() == 0){
-            topics = DEFAULT_TOPIC;
-        }
+        List<Integer> topics = search.isInit() ? result.getSubTopics() : search.getSubTopics();
         List<MainContent> contentList = postService.getPostList(search.getFpId(),topics);
         if (contentList.isEmpty()) {
             result.setMsg("no user found!");
@@ -111,7 +107,7 @@ public class MainController {
             return ResponseEntity.badRequest().body(result);
 
         }
-        userLoginService.updateUserTopics(search.getFpId(),search.getTopics());
+        userLoginService.updateUserTopics(search.getFpId(),search.getSubTopics());
         result.setMsg("0");
         return ResponseEntity.ok(result);
     }

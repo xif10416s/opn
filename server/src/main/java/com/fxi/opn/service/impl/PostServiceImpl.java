@@ -31,10 +31,15 @@ public class PostServiceImpl implements PostService {
     public static Integer GET_PAGE_SIZE = 500;
 
     @Override
-    public List<MainContent> getPostList(String fpid ,List<Integer> topics) {
+    public List<MainContent> getPostList(String fpid ,List<Integer> subTopics) {
         Integer fromPage = 0;
         Pageable top =  PageRequest.of(fromPage, GET_PAGE_SIZE);
-        List<Post> onePage = postRepository.findByTopicIdInOrderByDateDesc(topics,top);
+        List<Post> onePage = null;
+        if(subTopics == null || subTopics.size() ==0){
+            onePage = postRepository.findByOrderByDateDesc(top);
+        } else {
+            onePage = postRepository.findBySubTopicIdInOrderByDateDesc(subTopics,top);
+        }
         Set<Long> readLogSet = getReadLog(fpid);
         List<Post> filterPost = onePage.stream().filter(post -> {
             return !readLogSet.contains(post.getId());
@@ -49,7 +54,7 @@ public class PostServiceImpl implements PostService {
                 mainContent.setContent(p.getContent());
                 mainContent.setTtsUrls(p.getTtsUrls());
                 mainContent.setPostId(p.getId());
-                mainContent.setOrginUrl(p.getOrginUrl());
+//                mainContent.setOrginUrl(p.getOrginUrl());
                 rsList.add(mainContent);
             }
         } else {

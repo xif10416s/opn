@@ -14,4 +14,6 @@ import java.util.List;
 
 public interface  PostRepository extends JpaRepository<Post, Long> {
     public List<Post> findByTopicIdInOrderByDateDesc(Collection<Integer> topics, Pageable page);
+    public List<Post> findBySubTopicIdInOrderByDateDesc(Collection<Integer> subTopics, Pageable page);
+    public List<Post> findByOrderByDateDesc(Pageable page);
 }

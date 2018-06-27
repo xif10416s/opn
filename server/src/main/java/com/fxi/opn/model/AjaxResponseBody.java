@@ -8,7 +8,7 @@ import java.util.List;
 public class AjaxResponseBody<E> {
     String msg;
     List<E> result;
-    public List<Integer> topics;
+    public List<Integer> subTopics;
 
     public void setMsg(String msg) {
         this.msg = msg;
@@ -26,11 +26,11 @@ public class AjaxResponseBody<E> {
         return result;
     }
 
-    public void setTopics(List<Integer> topics) {
-        this.topics = topics;
+    public void setSubTopics(List<Integer> subTopics) {
+        this.subTopics = subTopics;
     }
 
-    public List<Integer> getTopics() {
-        return topics;
+    public List<Integer> getSubTopics() {
+        return subTopics;
     }
 }
